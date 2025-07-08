@@ -2,7 +2,7 @@ using Game.HealthSystem;
 using TMPro;
 using UnityEngine;
 
-namespace DefaultNamespace
+namespace Game.Example
 {
     public class UI : MonoBehaviour
     {

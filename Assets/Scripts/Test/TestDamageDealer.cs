@@ -1,15 +1,13 @@
-using System;
-using System.ComponentModel;
+using Game.HealthSystem;
 using Sirenix.OdinInspector;
-using SRDebugger;
 using UnityEngine;
 
-namespace Game.HealthSystem
+namespace Game.Example
 {
     public class TestDamageDealer : MonoBehaviour
     {
         [SerializeField] private PlayerController player;
-        [SerializeField] private HealthController target => player.Health;
+        private HealthController target => player.Health;
 
         [Button]
         public void TestDefaultDamage(float amount, DamageType damageType)

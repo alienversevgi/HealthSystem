@@ -1,14 +1,13 @@
 using System;
+using BaseX.Utils;
 using Cysharp.Threading.Tasks;
-using Cysharp.Threading.Tasks.Triggers;
 using DG.Tweening;
 using Game.HealthSystem;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace BaseX.Utils.UI
+namespace Game.Example
 {
     public class TimerView : MonoBehaviour,IDisposable
     {

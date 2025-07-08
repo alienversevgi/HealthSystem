@@ -4,7 +4,7 @@ using System.Linq;
 using DG.Tweening;
 using UnityEngine;
 
-namespace Test
+namespace Game.Example
 {
     public class HeathBarUI : MonoBehaviour
     {

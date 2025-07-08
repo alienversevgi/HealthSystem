@@ -1,7 +1,7 @@
 namespace Game.HealthSystem
 {
     [System.Serializable]
-    public class HealthData
+    public struct HealthData
     {
         public int Health;
         public int MaxHealth;

@@ -1,6 +1,7 @@
+using Game.HealthSystem;
 using UnityEngine;
 
-namespace Game.HealthSystem
+namespace Game.Example
 {
     public class PlayerController : MonoBehaviour
     {
