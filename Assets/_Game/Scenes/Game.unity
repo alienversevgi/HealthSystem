@@ -1955,6 +1955,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1271769554}
+  attackData: {fileID: 11400000, guid: 792224b22a44ee149bf5d2df024d3834, type: 2}
 --- !u!1 &1062629241
 GameObject:
   m_ObjectHideFlags: 0
@@ -2754,6 +2755,9 @@ MonoBehaviour:
         - 0
         - 0
         - 0
+  OnInitialized:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &1271769555
 Transform:
   m_ObjectHideFlags: 0

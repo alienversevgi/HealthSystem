@@ -49,6 +49,8 @@ namespace Game.HealthSystem
 
         private float _max;
         private readonly object _maxLock = new object();
+        
+        private BaseDamageCalculationStrategy _baseDamageCalculationStrategy;
 
         public float GetCurrent() => Current;
         public float GetMax() => Max;
@@ -63,6 +65,8 @@ namespace Game.HealthSystem
             Current = data.Health;
             Max = data.MaxHealth;
             Resistance = data.Resistance;
+            SetDamageCalculationStrategy(data.DamageCalculationStrategy);
+            
             Effect = new HealthEffectController();
             Effect.Initialize(this);
         }
@@ -75,13 +79,18 @@ namespace Game.HealthSystem
             Debug.Log($"-{amount} heal applied. CurrentHp : {Current}");
         }
 
-        public void ApplyDamage(float amount, DamageType type, IDamageCalculationStrategy calculationStrategy)
+        public void ApplyDamage(float amount, DamageType type)
         {
-            float damage = calculationStrategy.CalculateDamage(amount, type, this);
+            float damage = _baseDamageCalculationStrategy.CalculateDamage(amount, type, this);
             damage = Effect.CheckPreDamageEffect(damage);
             Current = Mathf.Clamp(Current - damage, 0, Max);
             Debug.Log($"-{damage} damage applied. CurrentHp : {Current}");
             CheckDeath();
+        }
+
+        public void SetDamageCalculationStrategy(BaseDamageCalculationStrategy calculationStrategy)
+        {
+            _baseDamageCalculationStrategy = calculationStrategy;
         }
 
         private void CheckDeath()

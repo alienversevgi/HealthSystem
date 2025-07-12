@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d970a0e4c6d4201ac22b48ce00116fc, type: 3}
+  m_Name: TestAttackData
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: BuffData
+      Entry: 7
+      Data: 0|Game.HealthSystem.DecreaseDamageBuffData, Assembly-CSharp
+    - Name: Percentage
+      Entry: 4
+      Data: 0
+    - Name: Duration
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: DebuffData
+      Entry: 7
+      Data: 1|Game.HealthSystem.DecreaseHealingDebuffData, Assembly-CSharp
+    - Name: Percentage
+      Entry: 4
+      Data: 0
+    - Name: Duration
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: OverTimeEffectData
+      Entry: 7
+      Data: 2|Game.HealthSystem.HoTEffectData, Assembly-CSharp
+    - Name: CountDownType
+      Entry: 3
+      Data: 0
+    - Name: Duration
+      Entry: 3
+      Data: 0
+    - Name: Amount
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+  DamageData: {fileID: 0}

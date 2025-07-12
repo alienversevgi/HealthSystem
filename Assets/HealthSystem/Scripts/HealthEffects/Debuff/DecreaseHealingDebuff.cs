@@ -1,9 +1,11 @@
 using System;
 using Cysharp.Threading.Tasks;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Game.HealthSystem
 {
+    [TypeRegistryItem(Name = nameof(DecreaseHealingDebuff))]
     public class DecreaseHealingDebuff : BaseDebuff
     {
         private readonly float _decreasePercentage;

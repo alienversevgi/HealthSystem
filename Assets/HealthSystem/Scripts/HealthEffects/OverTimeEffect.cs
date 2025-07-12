@@ -12,16 +12,20 @@ namespace Game.HealthSystem
         protected CountDownType Type { get; private set; }
         protected HealthController Health { get; private set; }
 
-        public UnityEvent<HealthEffectEvent.OverTimeStarted> OverTimeStarted = new UnityEvent<HealthEffectEvent.OverTimeStarted>();
+        public UnityEvent<HealthEffectEvent.OverTimeStarted> OverTimeStarted;
         public UnityEvent<HealthEffectEvent.OverTimeTick> OverTimeTick;
         public UnityEvent<HealthEffectEvent.OverTimeCompleted> OverTimeCompleted;
-        
+
         public OverTimeEffect(float amount,
             int duration, CountDownType type)
         {
             Duration = duration;
             Amount = amount;
             Type = type;
+
+            OverTimeStarted = new UnityEvent<HealthEffectEvent.OverTimeStarted>();
+            OverTimeTick = new UnityEvent<HealthEffectEvent.OverTimeTick>();
+            OverTimeCompleted = new UnityEvent<HealthEffectEvent.OverTimeCompleted>();
         }
 
         public virtual void Initialize(HealthController health)
@@ -30,22 +34,15 @@ namespace Game.HealthSystem
         }
 
         public abstract OverTimeEffectType GetOverTimeType();
-        
+
         public async UniTask Apply()
         {
             OverTimeStarted?.Invoke(new HealthEffectEvent.OverTimeStarted()
             {
                 EffectType = GetOverTimeType(),
                 Duration = Duration,
-                CountDownType =  Type
+                CountDownType = Type
             });
-            
-            // EventBus<HealthEffectEvent.OverTimeStarted>.Raise(new HealthEffectEvent.OverTimeStarted()
-            // {
-            //     EffectType = GetOverTimeType(),
-            //     Duration = Duration,
-            //     CountDownType =  Type
-            // });
 
             switch (Type)
             {
@@ -73,11 +70,6 @@ namespace Game.HealthSystem
             {
                 EffectType = GetOverTimeType(),
             });
-            
-            // EventBus<HealthEffectEvent.OverTimeCompleted>.Raise(new HealthEffectEvent.OverTimeCompleted()
-            // {
-            //     EffectType = GetOverTimeType(),
-            // });
 
             return;
 
@@ -86,22 +78,16 @@ namespace Game.HealthSystem
                 if (CheckBreakCondition())
                     return true;
 
-                int target = Type == CountDownType.Increase? i + 1 : i - 1;
-                
+                int target = Type == CountDownType.Increase ? i + 1 : i - 1;
+
                 OverTimeTick?.Invoke(new HealthEffectEvent.OverTimeTick
                 {
                     EffectType = GetOverTimeType(),
                     Current = target
                 });
-                //
-                // EventBus<HealthEffectEvent.OverTimeTick>.Raise(new HealthEffectEvent.OverTimeTick
-                // {
-                //     EffectType = GetOverTimeType(),
-                //     Current = target
-                // });
-                
+
                 ExecutePerAction();
-                
+
                 await UniTask.Delay(TimeSpan.FromSeconds(1));
 
                 return false;
@@ -114,6 +100,9 @@ namespace Game.HealthSystem
 
         public void Reset()
         {
+            OverTimeStarted.RemoveAllListeners();
+            OverTimeTick.RemoveAllListeners();
+            OverTimeCompleted.RemoveAllListeners();
         }
     }
 }

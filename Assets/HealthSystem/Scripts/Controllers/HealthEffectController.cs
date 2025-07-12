@@ -22,6 +22,8 @@ namespace Game.HealthSystem
             _overTimeEffects = new Dictionary<OverTimeEffectType, OverTimeEffect>();
             Buffs = new List<BaseBuff>();
             Debuffs = new List<BaseDebuff>();
+            OnOverTimeAdded = new UnityEvent<HealthEffectEvent.OverTimeAdded>();
+            OnOverTimeRemoved = new UnityEvent<HealthEffectEvent.OverTimeRemoved>();
         }
 
         public void AddOverTimeEffect(OverTimeEffect overTimeEffect)

@@ -2,9 +2,10 @@ using Game.HealthSystem.Interfaces;
 
 namespace Game.HealthSystem
 {
-    public class DamageCalculationWithResistanceStrategy : IDamageCalculationStrategy
+    [System.Serializable]
+    public class DamageCalculationWithResistanceStrategy : BaseDamageCalculationStrategy
     {
-        public float CalculateDamage(float amount, DamageType type, HealthController health)
+        public override float CalculateDamage(float amount, DamageType type, HealthController health)
         {
             var reduction =  health.GetResistance().DamageReductions[type];
             
